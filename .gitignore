@@ -208,3 +208,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# models
+models/*.bin
+models/*.pt
+models/*.xml
+models/*.onnx
