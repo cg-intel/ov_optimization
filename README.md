@@ -1,0 +1,20 @@
+## Optimization Methods
+- <del>compilation methods</del>
+- optimize preprocessing
+    - <del>ov ppp</del>
+    - remote tensor
+- optimize latency
+    - high-level performance hint: latency mode
+    - reduce first-inference lantecy
+        - model cache
+        - AUTO device
+    - avoid parallel inference
+        - hint: model priority
+    - avoid throughput optimizations (e.g. nstreams)
+- optimize throughput
+    - high-level performance hint: throughput mode
+    - set parallel streams (nstreams)
+    - batching
+        - manual batching
+        - aauto batching
+    - throughput optimizing strategy on CPU vs. GPU
