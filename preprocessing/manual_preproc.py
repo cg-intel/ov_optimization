@@ -1,10 +1,10 @@
-from bmk_utils.benchmark_utils import benchmark
+from bmk_utils.benchmark_utils import latency_benchmark
 import openvino as ov
 import numpy as np
 import cv2
 import time
 
-@benchmark(warmup=100, repeat=500)
+@latency_benchmark(warmup=100, repeat=500)
 def run_inference_manual_preproc():
     model_path = "models/resnet50.onnx"
     device = "GPU.0"

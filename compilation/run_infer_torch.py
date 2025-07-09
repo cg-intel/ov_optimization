@@ -1,11 +1,11 @@
-from bmk_utils.benchmark_utils import benchmark
+from bmk_utils.benchmark_utils import latency_benchmark
 import openvino as ov
 import numpy as np
 import torch
 import torchvision.models as models
 from torchvision.models import ResNet50_Weights
 
-@benchmark(warmup=100, repeat=500)
+@latency_benchmark(warmup=100, repeat=500)
 def run_inference_torch():
     device = "GPU.0"
     precision = "FP16"
