@@ -7,9 +7,11 @@ def benchmark(warmup=5, repeat=50):
         def wrapper():
             infer_once = func()
 
+            print("Warm Up")
             for _ in range(warmup):
                 infer_once()
 
+            print("Benchmarking")
             start = time.time()
             for _ in range(repeat):
                 infer_once()
