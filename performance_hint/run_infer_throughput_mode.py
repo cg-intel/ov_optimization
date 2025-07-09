@@ -6,7 +6,7 @@ from bmk_utils.benchmark_utils import throughput_benchmark
 
 @throughput_benchmark(warmup=10, repeat=100)
 def run_throughput_infer():
-    model_path = "models/resnet50.onnx"
+    model_path = "../models/resnet50.onnx"
     device = "GPU.0"
     input_shape = (1, 3, 640, 640)
     num_requests = 32

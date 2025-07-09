@@ -6,7 +6,7 @@ from openvino import Layout, Type
 
 @latency_benchmark(warmup=100, repeat=500)
 def run_inference_ov_preproc():
-    model_path = "models/resnet50.onnx"
+    model_path = "../models/resnet50.onnx"
     device = "GPU.0"
     precision = "FP16"
     input_shape = (1, 480, 640, 3)
@@ -34,7 +34,7 @@ def run_inference_ov_preproc():
 
     model_with_preproc = ppp.build()
 
-    ov.serialize(model_with_preproc, "models/resnet50_with_preproc.xml")
+    ov.serialize(model_with_preproc, "../models/resnet50_with_preproc.xml")
 
     config = {"INFERENCE_PRECISION_HINT": precision}
     compiled_model = core.compile_model(model_with_preproc, device, config)

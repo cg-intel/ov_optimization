@@ -4,7 +4,7 @@ import numpy as np
 
 @latency_benchmark(warmup=100, repeat=500)
 def run_inference_ir():
-    model_path = "models/resnet50.xml"
+    model_path = "../models/resnet50.xml"
     device = "GPU.0"
     precision = "FP16"
     input_shape = (1, 3, 640, 640)

@@ -6,7 +6,7 @@ import time
 
 @latency_benchmark(warmup=100, repeat=500)
 def run_inference_manual_preproc():
-    model_path = "models/resnet50.onnx"
+    model_path = "../models/resnet50.onnx"
     device = "GPU.0"
     precision = "FP16"
     raw_shape = (1, 480, 640, 3)

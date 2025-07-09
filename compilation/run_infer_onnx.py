@@ -4,7 +4,7 @@ import numpy as np
 
 @latency_benchmark(warmup=100, repeat=500)
 def run_inference_onnx():
-    model_path = "models/resnet50.onnx"
+    model_path = "../models/resnet50.onnx"
     device = "GPU.0"
     precision = "FP16"
     input_shape = (1, 3, 640, 640)
