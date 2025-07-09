@@ -4,8 +4,9 @@ import numpy as np
 import torch
 import torchvision.models as models
 from torchvision.models import ResNet50_Weights
+import openvino.properties.hint as hint
 
-@latency_benchmark(warmup=100, repeat=500)
+@latency_benchmark()
 def run_inference_torch():
     device = "GPU.0"
     precision = "FP16"
@@ -20,7 +21,7 @@ def run_inference_torch():
     core = ov.Core()
 
     config = {
-        "INFERENCE_PRECISION_HINT": precision
+        hint.inference_precision: precision
     }
 
     compiled_model = core.compile_model(ov_model, device, config)

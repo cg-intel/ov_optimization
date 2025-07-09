@@ -8,7 +8,7 @@ dummy_input = torch.randn(1, 3, 640, 640)
 
 torch.onnx.export(
     model,
-    dummy_input,
+    (dummy_input,),
     "resnet50.onnx",
     input_names=["images"],
     output_names=["output"],

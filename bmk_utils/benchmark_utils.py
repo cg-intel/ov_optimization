@@ -2,7 +2,7 @@ import time
 from functools import wraps
 import numpy as np
 
-def latency_benchmark(warmup=5, repeat=50):
+def latency_benchmark(warmup=10, repeat=100):
     def decorator(func):
         @wraps(func)
         def wrapper():
@@ -53,7 +53,7 @@ def throughput_benchmark(warmup=10, repeat=100):
                 latencies.append(end - start)
 
             latency = np.mean(latencies) * 1000
-            throughput = num_requests / np.mean(latencies)
+            throughput = num_requests / float(np.mean(latencies))
 
             print(f"Benchmark Results: ")
             print(f"Latency: {latency:.2f} ms")

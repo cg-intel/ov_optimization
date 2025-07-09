@@ -3,7 +3,7 @@ import torch
 import torchvision.models as models
 from torchvision.models import ResNet50_Weights
 
-@latency_benchmark(warmup=100, repeat=500)
+@latency_benchmark()
 def run_inference_xpu():
     device = "xpu" if torch.xpu.is_available() else "cpu"
     print(f"XPU device name: {torch.xpu.get_device_name(0)}")

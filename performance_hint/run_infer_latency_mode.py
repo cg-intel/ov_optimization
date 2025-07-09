@@ -1,9 +1,9 @@
 from bmk_utils.benchmark_utils import latency_benchmark
 import openvino as ov
 import numpy as np
-import openvino.properties.hint as hints
+import openvino.properties.hint as hint
 
-@latency_benchmark(warmup=100, repeat=500)
+@latency_benchmark()
 def run_inference_onnx():
     model_path = "../models/resnet50.onnx"
     device = "GPU.0"
@@ -16,8 +16,8 @@ def run_inference_onnx():
     model = core.read_model(model_path)
 
     config = {
-        hints.inference_precision: precision,
-        hints.performance_mode: hints.PerformanceMode.LATENCY
+        hint.inference_precision: precision,
+        hint.performance_mode: hint.PerformanceMode.LATENCY
     }
 
     compiled_model = core.compile_model(model, device, config)

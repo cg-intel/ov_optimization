@@ -3,8 +3,9 @@ import openvino as ov
 import numpy as np
 import cv2
 import time
+import openvino.properties.hint as hint
 
-@latency_benchmark(warmup=100, repeat=500)
+@latency_benchmark()
 def run_inference_manual_preproc():
     model_path = "../models/resnet50.onnx"
     device = "GPU.0"
@@ -16,7 +17,7 @@ def run_inference_manual_preproc():
 
     core = ov.Core()
     model = core.read_model(model_path)
-    compiled_model = core.compile_model(model, device, {"INFERENCE_PRECISION_HINT": precision})
+    compiled_model = core.compile_model(model, device, {hint.inference_precision: precision})
     input_name = compiled_model.input(0).get_any_name()
     infer_request = compiled_model.create_infer_request()
 
@@ -30,7 +31,7 @@ def run_inference_manual_preproc():
         image = np.expand_dims(image, 0)
         return image
 
-    timings = {"pre": [], "infer": []}
+    stats = {"preproc": 0.0, "infer": 0.0, "count": 0}
 
     def infer():
         start = time.time()
@@ -38,9 +39,14 @@ def run_inference_manual_preproc():
         mid = time.time()
         infer_request.infer({input_name: processed})
         end = time.time()
-        
-        timings["pre"].append((mid - start) * 1000)
-        timings["infer"].append((end - mid) * 1000)
+
+        stats["preproc"] += (mid - start)
+        stats["infer"] += (end - mid)
+        stats["count"] += 1
+        if stats["count"] == 100:
+            preproc_latency = stats["preproc"] / stats["count"] * 1000
+            infer_latency = stats["infer"] / stats["count"] * 1000
+            print(f"Average Preprocessing: {preproc_latency:.2f} ms, Inference: {infer_latency:.2f} ms")
 
     return infer
 

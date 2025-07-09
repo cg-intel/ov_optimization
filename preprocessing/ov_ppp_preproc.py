@@ -3,8 +3,9 @@ import openvino as ov
 import numpy as np
 from openvino.preprocess import PrePostProcessor, ColorFormat, ResizeAlgorithm
 from openvino import Layout, Type
+import openvino.properties.hint as hint
 
-@latency_benchmark(warmup=100, repeat=500)
+@latency_benchmark()
 def run_inference_ov_preproc():
     model_path = "../models/resnet50.onnx"
     device = "GPU.0"
@@ -21,7 +22,7 @@ def run_inference_ov_preproc():
         .set_element_type(Type.u8) \
         .set_layout(Layout('NHWC')) \
         .set_color_format(ColorFormat.BGR) \
-        .set_shape(input_shape)
+        .set_shape(list(input_shape))
 
     ppp.input().model().set_layout(Layout('NCHW'))
 
@@ -36,7 +37,7 @@ def run_inference_ov_preproc():
 
     ov.serialize(model_with_preproc, "../models/resnet50_with_preproc.xml")
 
-    config = {"INFERENCE_PRECISION_HINT": precision}
+    config = {hint.inference_precision: precision}
     compiled_model = core.compile_model(model_with_preproc, device, config)
     input_name = compiled_model.input(0).get_any_name()
     infer_request = compiled_model.create_infer_request()
