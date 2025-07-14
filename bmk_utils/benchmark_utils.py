@@ -27,7 +27,7 @@ def latency_benchmark(warmup=10, repeat=100):
         return wrapper
     return decorator
 
-def throughput_benchmark(warmup=10, repeat=100):
+def throughput_benchmark(warmup=10, repeat=100, batch_size=1):
     def decorator(func):
         @wraps(func)
         def wrapper():
@@ -57,7 +57,7 @@ def throughput_benchmark(warmup=10, repeat=100):
 
             print(f"Benchmark Results: ")
             print(f"Latency: {latency:.2f} ms")
-            print(f"Throughput: {throughput:.2f} FPS")
+            print(f"Throughput: {throughput * batch_size:.2f} FPS")
         return wrapper
     return decorator
 

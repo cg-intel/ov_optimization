@@ -1,0 +1,48 @@
+N Streams =  1
+Warm Up
+Benchmark
+Benchmark Results:
+Latency: 116.30 ms
+Throughput: 137.57 FPS
+
+N Streams =  2
+Warm Up
+Benchmark
+Benchmark Results:
+Latency: 112.96 ms
+Throughput: 141.65 FPS
+
+N Streams =  4
+Warm Up
+Benchmark
+Benchmark Results:
+Latency: 113.94 ms
+Throughput: 140.42 FPS
+
+N Streams =  8
+Warm Up
+Benchmark
+Benchmark Results:
+Latency: 115.36 ms
+Throughput: 138.70 FPS
+
+N Streams =  16
+Warm Up
+Benchmark
+Benchmark Results:
+Latency: 121.68 ms
+Throughput: 131.49 FPS
+
+N Streams =  32
+Warm Up
+Benchmark
+Benchmark Results:
+Latency: 122.72 ms
+Throughput: 130.38 FPS
+
+AUTO N Streams =  2
+Warm Up
+Benchmark
+Benchmark Results:
+Latency: 112.80 ms
+Throughput: 141.85 FPS
