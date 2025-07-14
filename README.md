@@ -4,7 +4,7 @@
     - <del>ov ppp</del>
     - remote tensor
 - optimize latency
-    - high-level performance hint: latency mode
+    - <del>high-level performance hint: latency mode</del>
     - reduce first-inference lantecy
         - model cache
         - AUTO device

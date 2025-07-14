@@ -13,13 +13,12 @@ def run_inference_onnx():
     dummy_input = np.random.rand(*input_shape).astype(np.float32)
 
     core = ov.Core()
-    model = core.read_model(model_path)
 
     config = {
         hint.inference_precision: precision
     }
 
-    compiled_model = core.compile_model(model, device, config)
+    compiled_model = core.compile_model(model_path, device, config)
     input_name = compiled_model.input(0).get_any_name()
     infer_request = compiled_model.create_infer_request()
 

@@ -1,0 +1,25 @@
+First run (no cache):
+Disabling model cache...
+Compile time (without cache): 630.57 ms
+
+Second run (with cache - first time, create cache):
+Enabling model cache...
+Compile time (with cache): 569.02 ms
+
+Third run (with cache - cache already exists):
+Enabling model cache...
+Compile time (with cache): 546.96 ms
+
+ONNX model already exists.
+
+First run (no cache):
+Disabling model cache...
+Compile time (without cache): 1174.49 ms
+
+Second run (with cache - first time, create cache):
+Enabling model cache...
+Compile time (with cache): 1236.29 ms
+
+Third run (with cache - cache already exists):
+Enabling model cache...
+Compile time (with cache): 688.05 ms

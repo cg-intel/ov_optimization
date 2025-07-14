@@ -11,12 +11,11 @@ def run_throughput_infer():
     precision = "FP16"
 
     core = ov.Core()
-    model = core.read_model(model_path)
     config = {
         hint.inference_precision: precision,
         hint.performance_mode: hint.PerformanceMode.THROUGHPUT
     }
-    compiled_model = core.compile_model(model, device, config)
+    compiled_model = core.compile_model(model_path, device, config)
 
     num_requests = compiled_model.get_property("OPTIMAL_NUMBER_OF_INFER_REQUESTS")
     print(f"Using {num_requests} inference requests")

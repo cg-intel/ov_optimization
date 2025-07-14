@@ -35,7 +35,7 @@ def run_inference_ov_preproc():
 
     model_with_preproc = ppp.build()
 
-    ov.serialize(model_with_preproc, "../models/resnet50_with_preproc.xml")
+    ov.save_model(model_with_preproc, "../models/resnet50_with_preproc.xml")
 
     config = {hint.inference_precision: precision}
     compiled_model = core.compile_model(model_with_preproc, device, config)

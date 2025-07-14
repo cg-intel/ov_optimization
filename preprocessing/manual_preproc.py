@@ -16,8 +16,7 @@ def run_inference_manual_preproc():
     raw_input = np.random.randint(0, 256, size=raw_shape, dtype=np.uint8)
 
     core = ov.Core()
-    model = core.read_model(model_path)
-    compiled_model = core.compile_model(model, device, {hint.inference_precision: precision})
+    compiled_model = core.compile_model(model_path, device, {hint.inference_precision: precision})
     input_name = compiled_model.input(0).get_any_name()
     infer_request = compiled_model.create_infer_request()
 

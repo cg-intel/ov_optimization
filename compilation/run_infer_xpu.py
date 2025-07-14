@@ -9,7 +9,7 @@ def run_inference_xpu():
     print(f"XPU device name: {torch.xpu.get_device_name(0)}")
     input_shape = (1, 3, 640, 640)
 
-    model = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1).eval().to(device)
+    model = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1).to(device)
     model.eval()
     
     dummy_input = torch.randn(*input_shape).to(device)
